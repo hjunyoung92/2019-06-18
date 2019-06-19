@@ -8,7 +8,12 @@
  insert into tbl_board ( title, content, writer)
  values(#{title},#{content},#{writer})
  </insert>
- <select id="select" resultType="BoardVO">
- select * from tbl_board where bno = #{bno}
+ <select id="selectDESC" resultType="BoardVO" >
+ select * from tbl_board order by bno desc
  </select>
+ 
+ <select id="select" resultType="BoardVO" >
+ select * from tbl_board  where bno = #{bno}
+ </select>
+ 
 </mapper>

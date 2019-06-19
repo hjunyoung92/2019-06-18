@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,18 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testSelect() {
-		BoardVO vo =  mapper.select(66);
+		BoardVO vo = mapper.select(66);
 		log.info(vo);
+		
+	}
+	
+	@Test
+	public void testSelectDESC() {
+		List<BoardVO> list= null;
+		list =	mapper.selectDESC();
+		list.forEach(vo -> log.info(vo));
+		/*log.info(list);*/
+
 	}
 	
 }
