@@ -11,7 +11,6 @@ import lombok.extern.log4j.Log4j;
 @ToString
 @Service
 @Log4j
-
 public class Restaurant {
 	
 	@Setter(onMethod_ = {@Autowired} ) // 이게 제일 무난한 방법이오
