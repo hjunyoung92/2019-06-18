@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
-import org.zerock.mapper.BoardMapper;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 
 import lombok.extern.log4j.Log4j;
 
@@ -59,6 +60,21 @@ public class BoardMapperTests {
 	public void delete() {
 		int count = mapper.delete(50);
 		log.info("delete count:" + count);
+	}
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		mapper.selectPage(cri).forEach(vo->log.info(vo));
+	}
+	
+	@Test
+	public void testPageMaker() {
+		Criteria cri = new Criteria();
+		cri.setPage(11);
+		PageMaker pm = new PageMaker(cri, 120);
+		log.info(pm);
 	}
 	
 }

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+</html><%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 
@@ -8,7 +9,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-4 text-gray-800">Board Register Page</h1>
+	<h1 class="h3 mb-4 text-gray-800">Board Modify/Delete Page</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
@@ -16,26 +17,37 @@
 			<h6 class="m-0 font-weight-bold text-primary">Register</h6>
 		</div>
 		<div class="card-body">
-			<form class="user" action="/board/register" method="post">
+			<form id='form1' >
+				<div class="form-group">
+					<input type="text" name="bno"
+						class="form-control form-control-user"
+						value='<c:out value="${vo.bno}"/>' readonly="readonly">
+				</div>
 
 				<div class="form-group">
 					<input type="text" name="title"
-						class="form-control form-control-user" placeholder="타이틀">
+						class="form-control form-control-user" placeholder="타이틀"
+						value='<c:out value="${vo.title}"/>'>
 				</div>
 
 				<div class="form-group">
 					<input type="text" name="content"
-						class="form-control form-control-user" placeholder="컨텐츠">
+						class="form-control form-control-user" placeholder="컨텐츠"
+						value='<c:out value="${vo.content}"/>'>
 				</div>
 				<div class="form-group">
 					<input type="text" name="writer"
-						class="form-control form-control-user" placeholder="롸이터">
+						class="form-control form-control-user" placeholder="롸이터"
+						value='<c:out value="${vo.writer}"/>' readonly="readonly">
 				</div>
-				<button class="btn btn-primary btn-user btn-block">Submit</button>
-
-				<hr>
 
 			</form>
+			<button class="btn btn-danger btn-user btn-block">Delete</button>
+			<button class="btn btn-warning btn-user btn-block">Modify</button>
+
+			<hr>
+
+
 			<a href="/board/list" class="btn btn-secondary btn-user btn-block">
 				Go to List </a>
 
@@ -48,12 +60,20 @@
 <!-- /.container-fluid -->
 
 <script>
-		var flag = '${result}'; //서버에서 받아온 문자열을 문자열로 전달해줍시다
-
-		if (flag === 'success') {
-			alert("작업이 성공했습니다");
-		}
-	</script>
+	$(".btn-danger").on("click",function(){
+		console.log("delete button clicked");
+		
+		var formObj=$("#form1");
+		formObj.attr("action","/board/remove").attr("method", "post").submit();
+	});
+	
+	$(".btn-warning").on("click",function(){
+		console.log("modify button clicked");
+		
+		var formObj=$("#form1");
+		formObj.attr("action","/board/modify").attr("method", "post").submit();
+	});
+</script>
 <%@include file="../includes/footer.jsp"%>
 
 

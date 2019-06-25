@@ -8,7 +8,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-4 text-gray-800">Board Register Page</h1>
+	<h1 class="h3 mb-4 text-gray-800">Board Read Page</h1>
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
@@ -16,26 +16,39 @@
 			<h6 class="m-0 font-weight-bold text-primary">Register</h6>
 		</div>
 		<div class="card-body">
-			<form class="user" action="/board/register" method="post">
+			<div class="form-group">
+				<input type="text" name="bno"
+					class="form-control form-control-user"  value='<c:out value="${vo.bno}"/>' 
+					readonly="readonly">
+			</div>
 
-				<div class="form-group">
-					<input type="text" name="title"
-						class="form-control form-control-user" placeholder="타이틀">
-				</div>
+			<div class="form-group">
+				<input type="text" name="title"
+					class="form-control form-control-user" placeholder="타이틀" value='<c:out value="${vo.title}"/>' 
+					readonly="readonly">
+			</div>
 
-				<div class="form-group">
-					<input type="text" name="content"
-						class="form-control form-control-user" placeholder="컨텐츠">
-				</div>
-				<div class="form-group">
-					<input type="text" name="writer"
-						class="form-control form-control-user" placeholder="롸이터">
-				</div>
-				<button class="btn btn-primary btn-user btn-block">Submit</button>
+			<div class="form-group">
+				<input type="text" name="content"
+					class="form-control form-control-user" placeholder="컨텐츠" value='<c:out value="${vo.content}"/>' 
+					readonly="readonly">
+			</div>
+			<div class="form-group">
+				<input type="text" name="writer"
+					class="form-control form-control-user" placeholder="롸이터" value='<c:out value="${vo.writer}"/>' 
+					readonly="readonly">
+			</div>
+			<div class="form-group">
+				<input type="text" name="RegDate"
+					class="form-control form-control-user"  value='<c:out value="${vo.regdate}"/>' 
+					readonly="readonly">
+			</div>
+			
+			<a href="/board/modify?bno=${vo.bno}"><button class="btn btn-primary btn-user btn-block">Modify/Delete</button></a>
 
-				<hr>
+			<hr>
 
-			</form>
+
 			<a href="/board/list" class="btn btn-secondary btn-user btn-block">
 				Go to List </a>
 

@@ -332,3 +332,4 @@
 
         </nav>
         <!-- End of Topbar -->
+        <script src="/resources/vendor/jquery/jquery.min.js"></script>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardMapper {
 
@@ -21,5 +22,7 @@ public interface BoardMapper {
 	
 	@Select("select *from tbl_board where bno>0 order by bno desc")
 	public List<BoardVO> selectAll();
+	
+	public List<BoardVO> selectPage(Criteria cri);
 	
 }
