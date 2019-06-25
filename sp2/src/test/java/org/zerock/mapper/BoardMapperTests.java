@@ -23,9 +23,9 @@ public class BoardMapperTests {
 	@Test
 	public void testInsert() {
 		BoardVO vo= new BoardVO();
-		vo.setTitle("알로하");
+		vo.setTitle("목요일");
 		vo.setContent("구텐탁");
-		vo.setWriter("봉주루");
+		vo.setWriter("에 뵙겠습니다");
 		mapper.insert(vo);
 	}
 	

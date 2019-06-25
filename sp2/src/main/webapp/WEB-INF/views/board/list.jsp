@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2><a href='board/register'>게시물 등록</a></h2>
 <table border="1">
 <tr>
 <td>BNO</td>
@@ -24,5 +25,13 @@
 </tr>
 </c:forEach>
 </table>
+<script>
+var flag = '${result}'; //서버에서 받아온 문자열을 문자열로 전달해줍시다
+
+if (flag === 'success') {
+	alert("작업이 성공했습니다");
+}
+</script>
+
 </body>
 </html>
