@@ -56,4 +56,10 @@ public class BoardServicelmpl implements BoardService {
 		return mapper.selectPage(cri);
 	}
 
+	@Override
+	public int getListCount(Criteria cri) {
+		
+		return mapper.selectPageCount(cri);
+	}
+
 }

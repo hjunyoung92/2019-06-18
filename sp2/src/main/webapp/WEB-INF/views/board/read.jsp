@@ -44,13 +44,13 @@
 					readonly="readonly">
 			</div>
 			
-			<a href="/board/modify?bno=${vo.bno}"><button class="btn btn-primary btn-user btn-block">Modify/Delete</button></a>
+			<button class="btn btn-primary btn-user btn-block modBtn">Modify/Delete</button>
 
 			<hr>
 
 
-			<a href="/board/list" class="btn btn-secondary btn-user btn-block">
-				Go to List </a>
+			<button class="btn btn-secondary btn-user btn-block listBtn">
+				Go to List </button>
 
 		</div>
 
@@ -60,13 +60,31 @@
 </div>
 <!-- /.container-fluid -->
 
-<script>
-		var flag = '${result}'; //서버에서 받아온 문자열을 문자열로 전달해줍시다
+<form id="actionForm" action="/board/modify" method="get">
+	<input type='hidden' name='bno' value='${cri.bno }'>
+ 	<input type='hidden' name='page' value='${cri.page }'>
+ 	<input type='hidden' name='amount' value='${cri.amount }'>
+ 	<input type='hidden' name='type' value='${cri.type }'> 
+	<input type='hidden' name='keyword' value='${cri.keyword }'>
+</form>
 
-		if (flag === 'success') {
-			alert("작업이 성공했습니다");
-		}
-	</script>
+<script>
+		
+	var flag = '${result}'; //서버에서 받아온 문자열을 문자열로 전달해줍시다
+	var actionForm =$("#actionForm");
+	
+	$(".modBtn").on("click", function(e) {
+		actionForm.submit();
+	});
+
+	$(".listBtn").on("click", function(e) {
+		actionForm.find("input[name='bno']").remove();
+		actionForm.attr("action","/board/list").submit();
+	});
+	if (flag === 'success') {
+		alert("작업이 성공했습니다");
+	}
+</script>
 <%@include file="../includes/footer.jsp"%>
 
 

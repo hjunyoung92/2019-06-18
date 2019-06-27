@@ -1,6 +1,9 @@
 package org.zerock.mapper;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +23,38 @@ import lombok.extern.log4j.Log4j;
 public class BoardMapperTests {
 	@Autowired
 	BoardMapper mapper;
+	
+	@Test
+	public void testMap() {
+		String type = "TCW";
+		String keyword ="홍길동";
+		
+		if(type == null|| type.trim().length()==0) {
+			
+		}
+		
+		
+		//T,C,W
+		String[] arr= type.split("");
+		
+		log.info(Arrays.deepToString(arr));
+		
+		Map<String, String> map = new HashMap<>();
+		for(String word:arr){
+			map.put(word, keyword);
+		}
+		log.info(map);
+	}
+
+	
+	@Test
+	public void testSearch() {
+		Map<String, String> map = new HashMap<>();
+		map.put("T", "샘플");
+		map.put("C", "샘플");
+		
+		mapper.search(map);
+	}
 	
 	@Test
 	public void testInsert() {
@@ -65,7 +100,12 @@ public class BoardMapperTests {
 	@Test
 	public void testPaging() {
 		Criteria cri = new Criteria();
-		cri.setPage(2);
+
+		cri.setType("T");
+		
+		cri.setKeyword("한글");
+		
+		
 		mapper.selectPage(cri).forEach(vo->log.info(vo));
 	}
 	
@@ -75,6 +115,7 @@ public class BoardMapperTests {
 		cri.setPage(11);
 		PageMaker pm = new PageMaker(cri, 120);
 		log.info(pm);
+		log.info(pm.getLink("/board/link", 3));
 	}
 	
 }

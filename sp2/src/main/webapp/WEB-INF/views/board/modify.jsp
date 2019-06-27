@@ -17,7 +17,13 @@
 			<h6 class="m-0 font-weight-bold text-primary">Register</h6>
 		</div>
 		<div class="card-body">
-			<form id='form1' >
+			<form id='form1'>
+				<input type='hidden' name='bno' value='${cri.bno }'> 
+				<input type='hidden' name='page' value='${cri.page }'> 
+				<input type='hidden' name='amount' value='${cri.amount }'>
+				<input type='hidden' name='type' value='${cri.type }'> 
+				<input type='hidden' name='keyword' value='${cri.keyword }'>
+				
 				<div class="form-group">
 					<input type="text" name="bno"
 						class="form-control form-control-user"
@@ -60,19 +66,24 @@
 <!-- /.container-fluid -->
 
 <script>
-	$(".btn-danger").on("click",function(){
-		console.log("delete button clicked");
-		
-		var formObj=$("#form1");
-		formObj.attr("action","/board/remove").attr("method", "post").submit();
-	});
-	
-	$(".btn-warning").on("click",function(){
-		console.log("modify button clicked");
-		
-		var formObj=$("#form1");
-		formObj.attr("action","/board/modify").attr("method", "post").submit();
-	});
+	$(".btn-danger").on(
+			"click",
+			function() {
+
+				var formObj = $("#form1");
+				formObj.attr("action", "/board/remove").attr("method", "post")
+						.submit();
+			});
+
+	$(".btn-warning").on(
+			"click",
+			function() {
+				console.log("modify button clicked");
+
+				var formObj = $("#form1");
+				formObj.attr("action", "/board/modify").attr("method", "post")
+						.submit();
+			});
 </script>
 <%@include file="../includes/footer.jsp"%>
 
