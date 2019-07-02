@@ -24,6 +24,8 @@ public class BoardMapperTests {
 	@Autowired
 	BoardMapper mapper;
 	
+	
+	
 	@Test
 	public void testMap() {
 		String type = "TCW";
