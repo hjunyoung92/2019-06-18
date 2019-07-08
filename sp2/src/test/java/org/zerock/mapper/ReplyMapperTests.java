@@ -37,4 +37,14 @@ public class ReplyMapperTests {
 		mapper.list(8189).forEach(vo->
 		log.info(vo));
 	}
+	
+	@Test
+	public void testModify() {
+		ReplyVO vo = new ReplyVO();
+		vo.setRno(266);
+		vo.setReply("번창하세요");
+		
+		mapper.modify(vo);
+		
+	}
 }

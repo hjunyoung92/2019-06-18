@@ -78,7 +78,7 @@
 		type='hidden' name='keyword' value='${cri.keyword }'>
 </form>
 
-<!-- Logout Modal-->
+<!-- Reply Modal-->
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -91,10 +91,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<input type="text" class="form-control mbno" value="${vo.bno}"
-					readonly="readonly"> <input type="text"
-					class="form-control" name="reply" value="푸슝"> <input
-					type="text" class="form-control" name="replyer" value="빠슝">
+				<input type="text" class="form-control mbno" value="${vo.bno}" readonly="readonly"> 
+				<input type="text" class="form-control mrno" name="rno" value="" readonly="readonly">
+				<input type="text" class="form-control" name="reply" value="푸슝"> 
+				<input type="text" class="form-control" name="replyer" value="빠슝">
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -133,7 +133,7 @@ display:none;
     	
     	replyService.getReply(rno,function(reply){
     		
-    		$(".mbno").val(reply.rno);
+    		$(".mrno").val(reply.rno);
     		$("input[name=reply]").val(reply.reply);
     		$("input[name=replyer]").val(reply.replyer);
     		$("#replyModal").modal('show');
@@ -166,6 +166,15 @@ display:none;
 		actionForm.find("input[name='bno']").remove();
 		actionForm.attr("action","/board/list").submit();
 	});
+	
+	$(".deleteBtn").on("click", function(e){
+		var rno = $("input[name=rno]").val();
+		replyService.removeReply(rno,function(){
+			alert("removed****")
+			$("#replyModal").modal('hide')
+            showPage();
+		})
+	})
 	$(".replyBtn").on("click", function (e) {
 
 	        let obj = {
@@ -180,6 +189,21 @@ display:none;
 	            showPage();
 	        });
 	   });
+	$(".modifyBtn").on("click", function (e) {
+
+        let obj = {
+  			rno: $(".mrno").val(),
+            reply: $("input[name='reply']").val()
+        }
+
+        replyService.modifyReply(obj, function () {
+            alert("성공")
+            $("#replyModal").modal('hide')
+            showPage();
+        });
+  	 });
+	
+	
 
 	   function  showPage() {
 
@@ -204,7 +228,9 @@ display:none;
                replyList.append(str);
            })
 
-       }
+       };
+       
+	   
 	    
 	    
 	if (flag === 'success') {

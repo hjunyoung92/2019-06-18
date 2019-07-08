@@ -44,7 +44,7 @@
 						<tr>
 							<td><c:out value="${vo.bno}" /></td>
 							<td><a href='${vo.bno}' class='view'><c:out
-										value="${vo.title}" /></a></td>
+										value="${vo.title}" /></a><span>[${vo.replycnt}]</span></td>
 							<td><c:out value="${vo.writer}" /></td>
 							<td><c:out value="${vo.regdate}" /></td>
 						</tr>
