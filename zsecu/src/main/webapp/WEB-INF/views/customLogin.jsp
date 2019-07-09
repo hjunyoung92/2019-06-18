@@ -19,7 +19,7 @@
 	<h1>Custom Login Page</h1>
 
 	<h2>
-		<c:out value="${error}" />
+		<c:out value='${param.error == "V1"? "아이디랑 비밀번호랑 틀렷어요":""}' />
 	</h2>
 
 	<h2>
