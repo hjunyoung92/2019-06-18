@@ -29,7 +29,7 @@ public class SecurityTests {
 	@Test
 	public void testInsertAuth() {
 		String sql = "insert into tbl_member_auth (userid, auth) values(?,?)";
-		for (int i = 0; i < 100; i++) {
+		for (int i = 80; i < 100; i++) {
 			try (Connection con = ds.getConnection();
 				PreparedStatement pst = con.prepareStatement(sql);
 			){
